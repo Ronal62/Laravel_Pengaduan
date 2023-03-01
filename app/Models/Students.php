@@ -9,7 +9,7 @@ class Students extends Model
 {
     use HasFactory;
     protected $table = 'students';
-    protected $primarykey = 'id_students';
+    protected $primaryKey = 'id_students';
 
 
     public $incrementing = false;

@@ -21,22 +21,30 @@ class StoreStudentsRequest extends FormRequest
      */
     public function rules(): array
     {
-         return [
-        'txtid' => 'required|unique:students,id_students|min:7|max:7',
-        'txtfull_name' => 'required',
-        'txtgender' => 'required',
-        'txtemail' => 'required',
-        'txtphone' => 'required',
-        'txtaddress' => 'required',
-    ];
+        return [
+            'txtid' => 'required|unique:students,id_students|min:7|max:7',
+            'txtfull_name' => 'required',
+            'txtgender' => 'required',
+            'txtemail' => 'required|email|unique:students,email',
+            'txtphone' => 'required|numeric',
+            'txtaddress' => 'required',
+        ];
     }
 
-     public function messages(): array
+    public function messages(): array
     {
-         return [
-        'txtid.required' => 'Tidak Boleh Kosong',
-        'txtid.unique' => 'Sudah Ada Di Dalam Table',
-        'txtfull_name.required' => 'Tidak Boleh Kosong',
-    ];
+        return [
+            'txtid.required' => ':attribute Tidak Boleh Kosong',
+            'txtid.unique' => ':attribute Sudah Ada Di Dalam Table',
+            'txtfull_name.required' => ':attribute Tidak Boleh Kosong',
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'txtid' => 'ID Students',
+            'txtfull_name' => 'Nama Lengkap',
+        ];
     }
 }

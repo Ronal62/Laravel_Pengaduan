@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateStudentsRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateStudentsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,29 @@ class UpdateStudentsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'txtfull_name' => 'required',
+            'txtgender' => 'required',
+            'txtemail' => [
+                'required',
+                Rule::unique('students', 'email')->ignore($this->txtid, 'id_students'),
+                'email'
+            ],
+            'txtphone' => 'required|numeric',
+            'txtaddress' => 'required',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'txtfull_name.required' => ':attribute Tidak Boleh Kosong',
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'txtfull_name' => 'Nama Lengkap',
         ];
     }
 }
