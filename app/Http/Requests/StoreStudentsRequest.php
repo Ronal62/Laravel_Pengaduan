@@ -30,4 +30,13 @@ class StoreStudentsRequest extends FormRequest
         'txtaddress' => 'required',
     ];
     }
+
+     public function messages(): array
+    {
+         return [
+        'txtid.required' => 'Tidak Boleh Kosong',
+        'txtid.unique' => 'Sudah Ada Di Dalam Table',
+        'txtfull_name.required' => 'Tidak Boleh Kosong',
+    ];
+    }
 }
