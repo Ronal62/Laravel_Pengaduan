@@ -1,6 +1,8 @@
 <?php
 
+
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +22,12 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('layout.home');
 });
+
+
+
 Route::get('/students/add', function () {
     return view('students.formadd');
 });
+
 
 Route::resource('students', StudentsController::class);
